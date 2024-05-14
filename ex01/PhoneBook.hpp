@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:38:08 by anttorre          #+#    #+#             */
-/*   Updated: 2024/05/08 16:18:52 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:48:55 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ class PhoneBook
 		void	addContact(void);
 		void	search(void);
 		Contact	*getContact(int index);
+		void	freeContacts(void);
+		bool	isDigit(std::string str);
 };
 
 #endif

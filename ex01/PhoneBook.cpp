@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:48:59 by anttorre          #+#    #+#             */
-/*   Updated: 2024/05/10 16:20:36 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:38:13 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ PhoneBook::PhoneBook(void)
 }
 
 PhoneBook::~PhoneBook(void)
-{}
+{
+}
 
 void	PhoneBook::addContact(void)
 {
@@ -30,7 +31,11 @@ void	PhoneBook::addContact(void)
 	std::string	secret;
 
 	if (this->index > 7)
-		std::cout << "You're about to delete " << this->contacts[this->index % 8]->getFirstName() << " contact." << std::endl;
+	{
+		std::cout << "You're about to delete '" << this->contacts[this->index % 8]->getFirstName() << "' contact." << std::endl;
+		delete(this->contacts[this->index % 8]);
+		this->contacts[this->index % 8] = nullptr;
+	}
 	while (first.empty())
 	{
 		std::cout << "Enter first name: ";
@@ -129,17 +134,21 @@ void	PhoneBook::search()
 		std::cout << "---------------------------------------------" << std::endl;
 	}
 	str = "";
-	while (str.empty() || (std::stoi(str) < 1 && std::stoi(str) > 8) || !c1)
+	while (str.empty() || !c1)
 	{
 		std::cout << "Select Index for which user you want inforrmation: ";
 		std::getline(std::cin, str);
 		std::cout << std::endl;
-		if (str != "")
+		if (str != "" && this->isDigit(str))
 			for (int i = 0; i < index; i++)
 				if (this->contacts[i]->getIndex() == std::stoi(str))
 					c1 = this->getContact(i);
 		if (!c1)
-			std::cout << "Chose an existing index." << std::endl;
+		{
+			std::cout << "Index not found." << std::endl;
+			std::cout << std::endl;
+			break;
+		}
 		else
 		{
 			std::cout << "Showing Information for contact index " << c1->getIndex() << std::endl;
@@ -152,6 +161,29 @@ void	PhoneBook::search()
 		}
 	}
 	
+}
+
+void	PhoneBook::freeContacts(void)
+{
+	int	index;
+
+	if (this->index > 7)
+		index = 8;
+	else
+		index = this->index % 8;
+	for(int i = 0; i < index; i++)
+	{
+		delete(this->contacts[i]);
+		this->contacts[i] = nullptr;
+	}
+}
+
+bool	PhoneBook::isDigit(std::string str)
+{
+	for (int i	= 0; i < (int)str.length(); i++)
+        if (!std::isdigit(str[i]))
+            return false;
+    return true;
 }
 
 Contact *PhoneBook::getContact(int	index)

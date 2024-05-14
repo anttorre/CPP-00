@@ -6,12 +6,17 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:15:25 by anttorre          #+#    #+#             */
-/*   Updated: 2024/05/10 16:11:53 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:12:16 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "PhoneBook.hpp"
+
+/* void	ft_leaks()
+{
+	system("leaks -q main");
+} */
 
 int	main(void)
 {
@@ -32,6 +37,8 @@ int	main(void)
 			phonebook.addContact();
 		if (str == "SEARCH")
 			phonebook.search();
+		if (str == "EXIT")
+			phonebook.freeContacts();
 	}
 	return (0);
 }

@@ -10,8 +10,8 @@ WHITE	:= \033[37;1m
 RESET	:= \033[0m
 
 CC = c++
-
-CFLAGS = -Wall -Werror -Wextra
+#-g -fsanitize=address,undefined
+CFLAGS = -Wall -Werror -Wextra 
 
 NAME = main
 
