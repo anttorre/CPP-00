@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:48:59 by anttorre          #+#    #+#             */
-/*   Updated: 2024/05/14 17:38:13 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:14:09 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,7 @@ void	PhoneBook::addContact(void)
 	std::string	secret;
 
 	if (this->index > 7)
-	{
 		std::cout << "You're about to delete '" << this->contacts[this->index % 8]->getFirstName() << "' contact." << std::endl;
-		delete(this->contacts[this->index % 8]);
-		this->contacts[this->index % 8] = nullptr;
-	}
 	while (first.empty())
 	{
 		std::cout << "Enter first name: ";
@@ -62,8 +58,8 @@ void	PhoneBook::addContact(void)
 		std::getline(std::cin, secret);
 	}
 	std::cout << std::endl;
-	this->contacts[this->index % 8] = new Contact(first, last, nick, phone, secret);
-	this->contacts[this->index % 8]->setIndex((this->index % 8) + 1);
+	this->contacts[this->index % 8] = Contact(first, last, nick, phone, secret);
+	this->contacts[this->index % 8].setIndex((this->index % 8) + 1);
 	this->index++;
 }
 
@@ -173,7 +169,7 @@ void	PhoneBook::freeContacts(void)
 		index = this->index % 8;
 	for(int i = 0; i < index; i++)
 	{
-		delete(this->contacts[i]);
+		delete this->contacts[i];
 		this->contacts[i] = nullptr;
 	}
 }
@@ -186,7 +182,7 @@ bool	PhoneBook::isDigit(std::string str)
     return true;
 }
 
-Contact *PhoneBook::getContact(int	index)
+Contact PhoneBook::getContact(int	index)
 {
 	return this->contacts[index % 8];
 }

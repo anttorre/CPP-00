@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:38:08 by anttorre          #+#    #+#             */
-/*   Updated: 2024/05/14 16:48:55 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:13:39 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class PhoneBook
 {
 	private:
-		Contact *contacts[8];
+		Contact contacts[8];
 		int		index;
 
 	public:
@@ -26,7 +26,7 @@ class PhoneBook
 		~PhoneBook(void);
 		void	addContact(void);
 		void	search(void);
-		Contact	*getContact(int index);
+		Contact	getContact(int index);
 		void	freeContacts(void);
 		bool	isDigit(std::string str);
 };
