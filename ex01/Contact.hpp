@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:38:06 by anttorre          #+#    #+#             */
-/*   Updated: 2024/05/08 17:11:56 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:02:35 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ class Contact
 	std::string	getNickName(void);
 	std::string	getPhoneNumber(void);
 	std::string	getDarkestSecret(void);
-	int			getIndex(void);
+	int			getIndex(int index);
 
 	/* Setters */
 	void		setIndex(int index);

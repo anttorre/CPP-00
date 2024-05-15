@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:48:59 by anttorre          #+#    #+#             */
-/*   Updated: 2024/05/14 18:14:09 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:15:49 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	PhoneBook::addContact(void)
 	std::string	secret;
 
 	if (this->index > 7)
-		std::cout << "You're about to delete '" << this->contacts[this->index % 8]->getFirstName() << "' contact." << std::endl;
+		std::cout << "You're about to delete '" << this->contacts[this->index % 8].getFirstName() << "' contact." << std::endl;
 	while (first.empty())
 	{
 		std::cout << "Enter first name: ";
@@ -68,9 +68,8 @@ void	PhoneBook::search()
 	std::string str;
 	size_t		length;
 	int 		index;
-	Contact		*c1;
+	Contact		c1;
 	
-	c1 = NULL;
 	if (this->index > 7)
 		index = 8;
 	else
@@ -80,97 +79,84 @@ void	PhoneBook::search()
 	std::cout << "---------------------------------------------" << std::endl;
 	for (int i = 0; i < index; i++)
 	{
-		std::cout << "|" << this->contacts[i]->getIndex();
+		std::cout << "|" << this->contacts[i].getIndex(i + 1);
 		for (int j = 1; j < 10; j++)
 			std::cout << " ";
 		std::cout << "|";
-		if ((length = this->contacts[i]->getFirstName().length()) > 10)
+		if ((length = this->contacts[i].getFirstName().length()) > 10)
 		{
-			str = this->contacts[i]->getFirstName().substr(0,9);
+			str = this->contacts[i].getFirstName().substr(0,9);
 			std::cout << str << ".|";
 		}
 		else if (length < 10)
 		{
-			std::cout << this->contacts[i]->getFirstName();
+			std::cout << this->contacts[i].getFirstName();
 			for (int j = length; j < 10; j++)
 				std::cout << " ";
 			std::cout << "|";
 		}
 		else
-			std::cout << this->contacts[i]->getFirstName() << "|";
-		if ((length = this->contacts[i]->getLastName().length()) > 10)
+			std::cout << this->contacts[i].getFirstName() << "|";
+		if ((length = this->contacts[i].getLastName().length()) > 10)
 		{
-			str = this->contacts[i]->getLastName().substr(0,9);
+			str = this->contacts[i].getLastName().substr(0,9);
 			std::cout << "|" << str << ".|";
 		}
 		else if (length < 10)
 		{
-			std::cout << this->contacts[i]->getLastName();
+			std::cout << this->contacts[i].getLastName();
 			for (int j = length; j < 10; j++)
 				std::cout << " ";
 			std::cout << "|";
 		}
 		else
-			std::cout << this->contacts[i]->getLastName() << "|";
-		if ((length = this->contacts[i]->getNickName().length()) > 10)
+			std::cout << this->contacts[i].getLastName() << "|";
+		if ((length = this->contacts[i].getNickName().length()) > 10)
 		{
-			str = this->contacts[i]->getNickName().substr(0,9);
+			str = this->contacts[i].getNickName().substr(0,9);
 			std::cout << str << ".|";
 		}
 		else if (length < 10)
 		{
-			std::cout << this->contacts[i]->getNickName();
+			std::cout << this->contacts[i].getNickName();
 			for (int j = length; j < 10; j++)
 				std::cout << " ";
 			std::cout << "|";
 		}
 		else
-			std::cout << "|" << this->contacts[i]->getNickName() << "|";
+			std::cout << "|" << this->contacts[i].getNickName() << "|";
 		std::cout << std::endl;
 		std::cout << "---------------------------------------------" << std::endl;
 	}
 	str = "";
-	while (str.empty() || !c1)
+	while (str.empty())
 	{
 		std::cout << "Select Index for which user you want inforrmation: ";
 		std::getline(std::cin, str);
 		std::cout << std::endl;
 		if (str != "" && this->isDigit(str))
 			for (int i = 0; i < index; i++)
-				if (this->contacts[i]->getIndex() == std::stoi(str))
+				if (this->contacts[i].getIndex(std::stoi(str)))
 					c1 = this->getContact(i);
-		if (!c1)
+		if (!this->isDigit(str) || !c1.getIndex(std::stoi(str)))
 		{
-			std::cout << "Index not found." << std::endl;
+			if (!this->isDigit(str))
+				std::cout << "Only digits allowed. Please insert an index." << std::endl;
+			else
+				std::cout << "Index not found." << std::endl;
 			std::cout << std::endl;
 			break;
 		}
 		else
 		{
-			std::cout << "Showing Information for contact index " << c1->getIndex() << std::endl;
-			std::cout << "First Name: " << c1->getFirstName() << std::endl;
-			std::cout << "Last Name: " << c1->getLastName() << std::endl;
-			std::cout << "Nick Name: " << c1->getNickName() << std::endl;
-			std::cout << "Phone Number: " << c1->getPhoneNumber() << std::endl;
-			std::cout << "Dark Secret: " << c1->getDarkestSecret() << std::endl;
+			std::cout << "Showing Information for contact index " << c1.getIndex(std::stoi(str)) << std::endl;
+			std::cout << "First Name: " << c1.getFirstName() << std::endl;
+			std::cout << "Last Name: " << c1.getLastName() << std::endl;
+			std::cout << "Nick Name: " << c1.getNickName() << std::endl;
+			std::cout << "Phone Number: " << c1.getPhoneNumber() << std::endl;
+			std::cout << "Dark Secret: " << c1.getDarkestSecret() << std::endl;
 			std::cout << std::endl;
 		}
-	}
-	
-}
-
-void	PhoneBook::freeContacts(void)
-{
-	int	index;
-
-	if (this->index > 7)
-		index = 8;
-	else
-		index = this->index % 8;
-	for(int i = 0; i < index; i++)
-	{
-		delete this->contacts[i];
-		this->contacts[i] = nullptr;
 	}
 }
 

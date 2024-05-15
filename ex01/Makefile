@@ -13,7 +13,7 @@ CC = c++
 #-g -fsanitize=address,undefined
 CFLAGS = -Wall -Werror -Wextra 
 
-NAME = main
+NAME = phonebook
 
 STD = -std=c++98
 

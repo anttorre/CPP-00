@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:41:08 by anttorre          #+#    #+#             */
-/*   Updated: 2024/05/08 17:13:01 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:03:54 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,12 @@ std::string Contact::getDarkestSecret(void)
 	return this->darkestSecret;
 }
 
-int			Contact::getIndex(void)
+int			Contact::getIndex(int index)
 {
-	return this->index;
+	if (index == this->index)
+		return this->index;
+	else
+		return (0);
 }
 
 void		Contact::setIndex(int index)
