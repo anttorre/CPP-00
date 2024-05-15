@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:15:25 by anttorre          #+#    #+#             */
-/*   Updated: 2024/05/15 15:19:45 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:49:58 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	main(void)
 		std::getline(std::cin, str);
 		std::cout << std::endl;
 		std::transform(str.begin(), str.end(), str.begin(), ::toupper);
+		for (int i = 0; i < (int)str.length(); i++)
+			std::toupper(str[i]);
 		if (str == "ADD")
 			phonebook.addContact();
 		if (str == "SEARCH")
