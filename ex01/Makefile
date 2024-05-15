@@ -19,7 +19,7 @@ STD = -std=c++98
 
 SRCS = 	Contact.cpp \
 		PhoneBook.cpp \
-		main.cpp
+		Main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
