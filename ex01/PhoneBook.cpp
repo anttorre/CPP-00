@@ -100,7 +100,7 @@ void	PhoneBook::search()
 		if ((length = this->contacts[i].getLastName().length()) > 10)
 		{
 			str = this->contacts[i].getLastName().substr(0,9);
-			std::cout << "|" << str << ".|";
+			std::cout << str << ".|";
 		}
 		else if (length < 10)
 		{
@@ -136,9 +136,9 @@ void	PhoneBook::search()
 		std::cout << std::endl;
 		if (str != "" && this->isDigit(str))
 			for (int i = 0; i < index; i++)
-				if (this->contacts[i].getIndex(std::stoi(str)))
+				if (this->contacts[i].getIndex(std::atoi(str.c_str())))
 					c1 = this->getContact(i);
-		if (!this->isDigit(str) || !c1.getIndex(std::stoi(str)))
+		if (!this->isDigit(str) || !c1.getIndex(std::atoi(str.c_str())))
 		{
 			if (!this->isDigit(str))
 				std::cout << "Only digits allowed. Please insert an index." << std::endl;
@@ -149,7 +149,7 @@ void	PhoneBook::search()
 		}
 		else
 		{
-			std::cout << "Showing Information for contact index " << c1.getIndex(std::stoi(str)) << std::endl;
+			std::cout << "Showing Information for contact index " << c1.getIndex(std::atoi(str.c_str())) << std::endl;
 			std::cout << "First Name: " << c1.getFirstName() << std::endl;
 			std::cout << "Last Name: " << c1.getLastName() << std::endl;
 			std::cout << "Nick Name: " << c1.getNickName() << std::endl;

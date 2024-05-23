@@ -32,7 +32,8 @@ int	main(void)
 		std::cout << "* EXIT" << std::endl;
 		std::getline(std::cin, str);
 		std::cout << std::endl;
-		std::transform(str.begin(), str.end(), str.begin(), ::toupper);
+		for (int i = 0; i < (int)str.length(); i++)
+			str[i] = std::toupper(str[i]);
 		for (int i = 0; i < (int)str.length(); i++)
 			std::toupper(str[i]);
 		if (str == "ADD")

@@ -9,7 +9,7 @@ CYAN	:= \033[36;1m
 WHITE	:= \033[37;1m
 RESET	:= \033[0m
 
-CC = c++
+CC = g++
 #-g -fsanitize=address,undefined
 CFLAGS = -Wall -Werror -Wextra 
 
@@ -19,7 +19,7 @@ STD = -std=c++98
 
 SRCS = 	Contact.cpp \
 		PhoneBook.cpp \
-		Main.cpp
+		main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
