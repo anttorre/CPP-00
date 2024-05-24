@@ -9,7 +9,7 @@ CYAN	:= \033[36;1m
 WHITE	:= \033[37;1m
 RESET	:= \033[0m
 
-CC = g++
+CC = clang++
 
 CFLAGS = -Wall -Werror -Wextra
 
