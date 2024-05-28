@@ -38,6 +38,8 @@ int	main(void)
 			phonebook.addContact();
 		if (str == "SEARCH")
 			phonebook.search();
+		if (std::cin.eof())
+			break;
 	}
 	return (0);
 }

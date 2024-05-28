@@ -34,26 +34,36 @@ void	PhoneBook::addContact(void)
 		std::cout << "You're about to delete '" << this->contacts[this->index % 8].getFirstName() << "' contact." << std::endl;
 	while (first.empty())
 	{
+		if (std::cin.eof())
+			break;
 		std::cout << "Enter first name: ";
 		std::getline(std::cin, first);
 	}
 	while (last.empty())
 	{
+		if (std::cin.eof())
+			break;
 		std::cout << "Enter last name: ";
 		std::getline(std::cin, last);
 	}
 	while (nick.empty())
 	{
+		if (std::cin.eof())
+			break;
 		std::cout << "Enter nick name: ";
 		std::getline(std::cin, nick);
 	}
 	while (phone.empty())
 	{
+		if (std::cin.eof())
+			break;
 		std::cout << "Enter phone number: ";
 		std::getline(std::cin, phone);
 	}
 	while (secret.empty())
 	{
+		if (std::cin.eof())
+			break;
 		std::cout << "Enter a dark secret: ";
 		std::getline(std::cin, secret);
 	}
@@ -131,6 +141,8 @@ void	PhoneBook::search()
 	str = "";
 	while (str.empty())
 	{
+		if (std::cin.eof())
+			break;
 		std::cout << "Select Index for which user you want inforrmation: ";
 		std::getline(std::cin, str);
 		std::cout << std::endl;
