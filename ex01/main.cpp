@@ -34,8 +34,6 @@ int	main(void)
 		std::cout << std::endl;
 		for (int i = 0; i < (int)str.length(); i++)
 			str[i] = std::toupper(str[i]);
-		for (int i = 0; i < (int)str.length(); i++)
-			std::toupper(str[i]);
 		if (str == "ADD")
 			phonebook.addContact();
 		if (str == "SEARCH")
