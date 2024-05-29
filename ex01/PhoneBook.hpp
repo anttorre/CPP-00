@@ -28,7 +28,6 @@ class PhoneBook
 		void	addContact(void);
 		void	search(void);
 		Contact	getContact(int index);
-		void	freeContacts(void);
 		bool	isDigit(std::string str);
 };
 

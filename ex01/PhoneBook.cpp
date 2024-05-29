@@ -143,7 +143,7 @@ void	PhoneBook::search()
 	{
 		if (std::cin.eof())
 			break;
-		std::cout << "Select Index for which user you want inforrmation: ";
+		std::cout << "Select Index for which user you want information: ";
 		std::getline(std::cin, str);
 		std::cout << std::endl;
 		if (str != "" && this->isDigit(str))
